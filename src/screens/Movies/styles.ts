@@ -1,48 +1,105 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
+
+const { width } = Dimensions.get('window');
+const cardWidth = (width - 45) / 2; // 2 colunas com margens proporcionais
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#101014',
-    paddingHorizontal: 15,
-    paddingTop: 10,
+    backgroundColor: '#0B0B0F',
+    paddingHorizontal: 16,
+    paddingTop: 8,
   },
-  title: {
-    fontSize: 22,
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 20,
+    marginTop: 5,
+  },
+  headerSubtitle: {
+    fontSize: 12,
+    color: '#8E8E93',
+    textTransform: 'uppercase',
+    letterSpacing: 1,
+  },
+  headerTitle: {
+    fontSize: 24,
     fontWeight: 'bold',
     color: '#FFFFFF',
-    marginBottom: 15,
-    textShadowColor: 'rgba(255, 255, 255, 0.3)',
-    textShadowOffset: { width: 0, height: 0 },
-    textShadowRadius: 6,
+    letterSpacing: 0.5,
+  },
+  avatarContainer: {
+    width: 30,
+    height: 30,
+    borderRadius: 5,
+    backgroundColor: '#1C1C24',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#2C2C38',
+  },
+  avatarText: {
+    fontSize: 13,
+  },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: '#FFFFFF',
+    marginBottom: 12,
   },
   row: {
     justifyContent: 'space-between',
-    marginBottom: 15,
+    marginBottom: 16,
   },
   card: {
-    backgroundColor: '#1C1C22',
-    borderRadius: 8,
-    padding: 8,
-    width: '48%',
-    alignItems: 'center',
+    width: cardWidth,
+    backgroundColor: '#14141A',
+    borderRadius: 12,
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: '#1F1F2B',
+  },
+  imageContainer: {
+    width: '100%',
+    height: 220,
+    position: 'relative',
   },
   cover: {
     width: '100%',
-    height: 200,
-    borderRadius: 6,
-    marginBottom: 8,
+    height: '100%',
+    resizeMode: 'cover',
+  },
+  ratingBadge: {
+    position: 'absolute',
+    top: 8,
+    right: 8,
+    backgroundColor: 'rgba(11, 11, 15, 0.75)',
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 8,
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: 'rgba(255, 255, 255, 0.1)',
+  },
+  ratingText: {
+    color: '#FFD700',
+    fontSize: 11,
+    fontWeight: 'bold',
+  },
+  infoContainer: {
+    padding: 10,
   },
   movieTitle: {
     color: '#FFFFFF',
-    fontWeight: 'bold',
-    fontSize: 14,
-    textAlign: 'center',
+    fontWeight: '600',
+    fontSize: 13,
+    marginBottom: 2,
   },
-  rating: {
-    color: '#FFD700',
-    fontSize: 12,
-    marginTop: 4,
+  categoryText: {
+    color: '#8E8E93',
+    fontSize: 11,
   },
 });
 

@@ -29,7 +29,7 @@ export default function Settings() {
           <Text style={{ color: '#FFFFFF', fontSize: 22, fontWeight: 'bold' }}>
             Film<Text style={{ color: '#E50914' }}>Center</Text>
           </Text>
-          <Text style={{ color: '#888888', fontSize: 14, marginTop: 4 }}>Versão 1.0.0</Text>
+          <Text style={{ color: '#888888', fontSize: 14, marginTop: 4 }}>Versão 1.2.4</Text>
         </View>
 
         <View style={styles.menuContainer}>

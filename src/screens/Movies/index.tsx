@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, FlatList, Image, TouchableOpacity } from 'react-native';
+import { View, Text, FlatList, Image, TouchableOpacity, StatusBar } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -109,6 +109,15 @@ export const MOVIES_LIST = [
     youtubeId: 'TcMBFSGVi1c'
   },
   { 
+    id: '19', 
+    title: 'Carros 3', 
+    category: 'Animação', 
+    rating: 4.4, 
+    cover: require('../../../assets/carros3.webp'),
+    synopsis: 'Carros 3 segue a história de Relâmpago McQueen, que, após um grave acidente, precisa demonstrar que ainda é competitivo contra uma nova geração de pilotos tecnologicamente avançados.',
+    youtubeId: 'BuvJZGLclAU'
+  },
+  { 
     id: '12', 
     title: 'Interestelar', 
     category: 'Ficção / Aventura', 
@@ -134,7 +143,62 @@ export const MOVIES_LIST = [
     cover: require('../../../assets/aranha.webp'),
     synopsis: 'Com sua identidade apagada da memória de todos, ele vive de forma anônima em Nova York, equilibrando a rotina universitária com a missão de proteger a cidade como Homem-Aranha.',
     youtubeId: 'PlulyWs1kS4'
+  },
+  { 
+    id: '15', 
+    title: 'Vingadores: Ultimato', 
+    category: 'Ação / Drama', 
+    rating: 4.8, 
+    cover: require('../../../assets/ultimato.webp'),
+    synopsis: 'Após os eventos devastadores de Vingadores: Guerra Infinita, o universo está em ruínas devido às ações do Titã Louco, Thanos, que eliminou metade de todas as criaturas vivas, incluindo heróis como Homem-Aranha, Doutor Estranho, Star-Lord, Feiticeira Escarlate e Groot.',
+    youtubeId: 'LMOqLeoP2yw'
+  },
+  { 
+    id: '16', 
+    title: 'Toy Story 5', 
+    category: 'Animação', 
+    rating: 4.5, 
+    cover: require('../../../assets/toystory.jpg'),
+    synopsis: 'O filme se passa dois anos após Toy Story 4 e acompanha Bonnie, agora com 8 anos, que descobre um novo passatempo: o tablet Lilypad, capaz de criar mundos virtuais que prendem sua atenção, afastando-a dos brinquedos tradicionais.',
+    youtubeId: '-YbiBclEEgo'
+  },
+  { 
+    id: '17', 
+    title: 'Invocação Do Mal 4', 
+    category: 'Terror', 
+    rating: 4.6, 
+    cover: require('../../../assets/invocacao.jpg'),
+    synopsis: 'Neste quarto capítulo da franquia de terror iniciada em 2013, Ed e Lorraine Warren, interpretados por Patrick Wilson e Vera Farmiga, se veem diante de entidades sobrenaturais que desafiam a experiência do casal de investigadores paranormais.',
+    youtubeId: 'n0sq-r0mBXQ'
+  },
+  { 
+    id: '18', 
+    title: 'Outra Mamãe', 
+    category: 'Terror', 
+    rating: 4.5, 
+    cover: require('../../../assets/mae.jpg'),
+    synopsis: 'A trama gira em torno de Bela, que enfrenta constantes discussões familiares. A situação toma um rumo aterrorizante quando uma criatura manipuladora que se parece exatamente com sua mãe começa a surgir em seu quarto.',
+    youtubeId: 'F1WJQbXIIwk'
+  },
+  { 
+    id: '20', 
+    title: 'Resident Evil', 
+    category: 'Terror', 
+    rating: 4.6, 
+    cover: require('../../../assets/resident.webp'),
+    synopsis: 'Em uma história totalmente inédita, Resident Evil acompanha Bryan (Austin Abrams), um entregador médico que, sem querer, se vê em uma corrida frenética e cheia de ação pela sobrevivência, enquanto uma noite fatídica e horripilante desmorona ao seu redor.',
+    youtubeId: 'M-WFfF2ETgk'
+  },
+  { 
+    id: '21', 
+    title: 'Demon Slayer: Castelo Infinito', 
+    category: 'Ação / Fantasia', 
+    rating: 4.6, 
+    cover: require('../../../assets/demon.webp'),
+    synopsis: 'O filme marca o início da trilogia final que adapta os capítulos finais do mangá "Demon Slayer" de Koyoharu Gotouge Tanjiro, juntamente com os Hashira e seus companheiros Zenitsu e Inosuke, corre para proteger seu líder, mas são lançados por Muzan Kibutsuji em uma descida misteriosa rumo ao Castelo Infinito.',
+    youtubeId: '3UiP4GwWNv0'
   }
+  
 ];
 
 export default function Movies() {
@@ -142,20 +206,45 @@ export default function Movies() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.title}> Catálogo de Filmes</Text>
+      <StatusBar barStyle="light-content" backgroundColor="#0B0B0F" />
+      
+      {/* Cabeçalho Customizado */}
+      <View style={styles.header}>
+        <View>
+          <Text style={styles.headerTitle}>Filmes</Text>
+        </View>
+        <View style={styles.avatarContainer}>
+          <Text style={styles.avatarText}>🎬</Text>
+        </View>
+      </View>
+
+      <Text style={styles.sectionTitle}>Filmes Do Catálogo</Text>
+
       <FlatList
         data={MOVIES_LIST}
         keyExtractor={item => item.id}
         numColumns={2}
+        showsVerticalScrollIndicator={false}
         columnWrapperStyle={styles.row}
         renderItem={({ item }) => (
           <TouchableOpacity 
             style={styles.card}
+            activeOpacity={0.85}
             onPress={() => navigation.navigate('MovieDetails', { id: item.id })}
           >
-            <Image source={item.cover} style={styles.cover} />
-            <Text style={styles.movieTitle} numberOfLines={1}>{item.title}</Text>
-            <Text style={styles.rating}>⭐ {item.rating}</Text>
+            <View style={styles.imageContainer}>
+              <Image source={item.cover} style={styles.cover} />
+              
+              {/* Badge de Nota Flutuante */}
+              <View style={styles.ratingBadge}>
+                <Text style={styles.ratingText}>⭐ {item.rating}</Text>
+              </View>
+            </View>
+
+            <View style={styles.infoContainer}>
+              <Text style={styles.movieTitle} numberOfLines={1}>{item.title}</Text>
+              <Text style={styles.categoryText} numberOfLines={1}>{item.category}</Text>
+            </View>
           </TouchableOpacity>
         )}
       />
